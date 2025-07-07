@@ -1,7 +1,7 @@
 <?php
 require '../inc/fonction.php';
 
-$dept = $_GET['dept_no'] ?? '';
+$dept = $_GET['dept_no'];
 $employes = [];
 $departement = null;
 
