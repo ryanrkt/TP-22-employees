@@ -29,6 +29,9 @@ $departments = getDepartementEtManagerEncours();
    <header class="bg-primary text-white py-4 mb-4">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="mb-0" style="letter-spacing:1px;font-size:2.2rem;">Départements et leurs Managers</h1>
+            <a href="pages/stats_emplois.php" class="btn btn-warning btn-lg fw-bold shadow-sm">
+                Statistiques des emplois
+            </a>
         </div>
     </header>
     <?php include __DIR__ . '/pages/formulaire_recherche.php'; ?>
