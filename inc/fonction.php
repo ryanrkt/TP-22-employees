@@ -74,7 +74,6 @@ function getEmployeeHistory($emp_no) {
     $connection = dbconnect();
     $history = ["titles" => [], "salaries" => []];
 
-    // Recupere les titres avec une indication "en_cours"
     $res = "SELECT title, from_date, to_date, 
                    (to_date = '9999-01-01') AS en_cours
             FROM titles 
@@ -82,7 +81,6 @@ function getEmployeeHistory($emp_no) {
             ORDER BY from_date";
     $res = mysqli_query($connection, $res);
     while ($row = $res->fetch_assoc()) {
-        // en_cours sera 1 si le titre est en cours, 0 sinon
         $row['en_cours'] = (bool)$row['en_cours'];
         $history["titles"][] = $row;
     }
