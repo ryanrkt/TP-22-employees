@@ -74,7 +74,7 @@ if ($emp_no !== '') {
                 <table class="table fiche-table table-bordered bg-white mb-4">
                     <tbody>
                         <tr>
-                            <th>Nom complet</th>
+                            <th>Nom et prénom</th>
                             <td><?= htmlspecialchars($employe['first_name'] . ' ' . $employe['last_name']) ?></td>
                         </tr>
                         <tr>
@@ -161,7 +161,7 @@ if ($emp_no !== '') {
                         <tbody>
                             <?php foreach ($historique["salaries"] as $salaire): ?>
                                 <tr>
-                                    <td><?= htmlspecialchars($salaire["salary"]) ?></td>
+                                    <td><?= htmlspecialchars($salaire["salary"]) ?> Ar</td>
                                     <td><?= htmlspecialchars($salaire["from_date"]) ?></td>
                                     <td><?= htmlspecialchars($salaire["to_date"]) ?></td>
                                 </tr>
