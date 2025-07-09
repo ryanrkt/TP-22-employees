@@ -4,15 +4,9 @@ require 'connection.php';
 function getDepartementEtManagerEncours(){
     $connectt=dbconnect();
     $sql="
-    SELECT 
-    d.dept_no,
-    d.dept_name,
-    m.emp_no AS manager_emp_no,
-    CONCAT(e.first_name, ' ', e.last_name) AS manager_name
-    FROM departments d
-    JOIN dept_manager m ON d.dept_no = m.dept_no
-    JOIN employees e ON m.emp_no = e.emp_no
-    WHERE CURRENT_DATE BETWEEN m.from_date AND m.to_date;
+    SELECT * 
+    FROM v_departements_manager_current
+    ORDER BY dept_name
     ";
     $result =mysqli_query($connectt, $sql);
     $departements = [];
@@ -23,10 +17,11 @@ function getDepartementEtManagerEncours(){
     }
     return $departements;
 }
+
 function getEmployesParDepartement($dept_no) {
     $connexion=dbconnect();
 
-    $dept_no = mysqli_real_escape_string($connexion, $dept_no); // Sécurise l'entrée
+    $dept_no = mysqli_real_escape_string($connexion, $dept_no); 
 
     $requete = "
         SELECT e.emp_no, e.first_name, e.last_name, e.gender, e.hire_date
@@ -153,7 +148,7 @@ function rechercherEmployes($dept_no, $nom, $age_min, $age_max, $offset = 0, $pa
     }
     return $employes;
 }
-
+//compter dans le resultat
 function compterEmployes($dept_no, $nom, $age_min, $age_max) {
     $conn = dbconnect();
     $sql = "SELECT COUNT(DISTINCT e.emp_no) AS total
@@ -181,6 +176,17 @@ function compterEmployes($dept_no, $nom, $age_min, $age_max) {
     $res = mysqli_query($conn, $sql);
     $row = $res ? $res->fetch_assoc() : ['total' => 0];
     return (int)$row['total'];
+}
+
+function getNbEmployeesDepartement($dept_no){
+    $connexion = dbconnect();
+    $dept_no = mysqli_real_escape_string($connexion, $dept_no);
+    $sql = "SELECT nb_employes FROM v_departements_nb_employes WHERE dept_no = '$dept_no'";
+    $result = mysqli_query($connexion, $sql);
+    if ($result && $row = mysqli_fetch_assoc($result)) {
+        return (int)$row['nb_employes'];
+    }
+    return 0;
 }
 
 
