@@ -41,8 +41,8 @@ $departments = getDepartementEtManagerEncours();
                         <tr>
                             <th scope="col">Nom du département</th>
                             <th scope="col">Manager actuel</th>
-                            <th>Voir le département</th>
                             <th>Nombre des  employés</th>
+                            <th>Voir le département</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +54,8 @@ $departments = getDepartementEtManagerEncours();
                             <?php foreach ($departments as $dept): ?>
                                 <tr class="position-relative">
                                     <td><?= htmlspecialchars($dept['dept_name']) ?></td>
-                                    <td><?= htmlspecialchars($dept['manager_name']) ?></td>
+                                    <td><?= htmlspecialchars($dept['manager_first_name']) ?> <?= htmlspecialchars($dept['manager_last_name']) ?>  </td>
+                                    <td><?php echo getNbEmployeesDepartement($dept['dept_no']);?></td>
                                     <td>
                                         <a href="pages/departement_employees.php?dept_no=<?= urlencode($dept['dept_no']); ?>" class="btn btn-sm btn-outline-secondary">
                                             Voir département
