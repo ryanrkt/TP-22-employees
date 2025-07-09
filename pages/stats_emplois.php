@@ -16,10 +16,11 @@ $res = mysqli_query($conn, $sql);
     <header class="bg-primary text-white py-4 mb-4">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="mb-0" style="letter-spacing:1px;font-size:2.2rem;">Statistiques des emplois</h1>
-            <a href="../index.php" class="btn btn-outline-light btn-lg fw-bold shadow-sm">Accueil</a>
         </div>
     </header>
     <main class="container">
+                                <a href="../index.php" class="btn btn-outline-primary btn-sm">← Retour à la liste des départements</a>
+
         <div class="card shadow mb-5">
             <div class="card-body">
                 <div class="table-responsive">
@@ -38,7 +39,7 @@ $res = mysqli_query($conn, $sql);
                                 <td><?= htmlspecialchars($row['title']) ?></td>
                                 <td><?= (int)$row['nb_hommes'] ?></td>
                                 <td><?= (int)$row['nb_femmes'] ?></td>
-                                <td><?= number_format($row['salaire_moyen'], 2, ',', ' ') ?> €</td>
+                                <td><?= number_format($row['salaire_moyen'], 2, ',', ' ') ?> Ar</td>
                             </tr>
                         <?php endwhile; ?>
                         </tbody>
