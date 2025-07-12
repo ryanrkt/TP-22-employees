@@ -17,7 +17,7 @@ if ($dept !== '') {
 <head>
     <meta charset="UTF-8" />
     <title>Employés du département <?= htmlspecialchars($dept) ?></title>
-    <link href="../assets/bootsrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
