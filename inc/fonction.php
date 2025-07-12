@@ -42,6 +42,7 @@ function getEmployesParDepartement($dept_no) {
     }
     return $employes;
 }
+
 function getInfosDepartement($dept_no) {
     $connexion = dbconnect();
 

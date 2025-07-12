@@ -17,12 +17,13 @@ if ($dept !== '') {
 <head>
     <meta charset="UTF-8" />
     <title>Employés du département <?= htmlspecialchars($dept) ?></title>
-    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/bootsrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body class="bg-light">
+<body>
 
-    <header class="bg-primary text-white py-4 mb-4">
+    <header class="text-white py-4 mb-4">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="mb-0">Détails du département</h1>
             <!-- <a href="recherche.php" class="btn btn-light fw-bold px-4 py-2 rounded-pill shadow-sm" style="font-size:1.1rem;">
@@ -30,6 +31,7 @@ if ($dept !== '') {
             </a> -->
         </div>
     </header>
+
     <?php include __DIR__ . '/formulaire_recherche.php'; ?>
 
     <main class="container">
@@ -39,11 +41,11 @@ if ($dept !== '') {
             <section class="mb-4">
                 <div class="card shadow">
                     <div class="card-body">
-                        <h2 class="card-title text-primary"><?= htmlspecialchars($departement['dept_name']) ?></h2>
-                        <p class="card-text">
+                        <h2 class="card-title"><?= htmlspecialchars($departement['dept_name']) ?></h2>
+                        <p class="card-text text-white">
                             <strong>Manager actuel :</strong> <?= htmlspecialchars($departement['manager_name'] ?? 'Aucun') ?>
                         </p>
-                        <a href="../index.php" class="btn btn-outline-primary btn-sm">← Retour à la liste des départements</a>
+                        <a href="../index.php" class="btn btn-sm">← Retour à la liste des départements</a>
                     </div>
                 </div>
             </section>
@@ -54,8 +56,8 @@ if ($dept !== '') {
                     <div class="alert alert-warning">Aucun employé trouvé dans ce département.</div>
                 <?php else: ?>
                     <div class="table-responsive">
-                        <table class="table table-bordered table-hover">
-                            <thead class="table-secondary">
+                        <table class="table table-dark table-hover table-bordered">
+                            <thead>
                                 <tr>
                                     <th>Numéro</th>
                                     <th>Nom</th>
@@ -72,7 +74,7 @@ if ($dept !== '') {
                                         <td><?= htmlspecialchars($emp['gender']) ?></td>
                                         <td><?= htmlspecialchars($emp['hire_date']) ?></td>
                                         <td>
-                                            <a href="fiche_employee.php?emp_no=<?= urlencode($emp['emp_no']); ?>" class="btn btn-sm btn-outline-secondary">
+                                            <a href="fiche_employee.php?emp_no=<?= urlencode($emp['emp_no']); ?>" class="btn btn-sm">
                                                 Voir fiche
                                             </a>
                                         </td>

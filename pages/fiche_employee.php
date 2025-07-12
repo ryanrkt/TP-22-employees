@@ -1,5 +1,4 @@
 <?php
-
 require '../inc/fonction.php';
 
 $emp_no = $_GET['emp_no'] ?? '';
@@ -14,52 +13,17 @@ if ($emp_no !== '') {
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8" />
     <title>Fiche employé <?= htmlspecialchars($emp_no) ?></title>
-    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <style>
-        .fiche-table th {
-            width: 220px;
-            background: #f8f9fa;
-        }
-
-        .fiche-table td,
-        .fiche-table th {
-            vertical-align: middle;
-        }
-
-        .fiche-table {
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
-        }
-
-        .section-title {
-            background: #e9ecef;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
-
-        .badge-en-cours {
-            background: #198754;
-            color: #fff;
-            font-size: 0.9em;
-        }
-    </style>
+    <link href="../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet" />
 </head>
 
-<body class="bg-light">
-
-    <header class="bg-primary text-white py-4 mb-0">
+<body>
+    <header class="text-white py-4 mb-0">
         <div class="container d-flex align-items-center justify-content-between">
             <h1 class="mb-0">Fiche de l’employé</h1>
-
-           
         </div>
     </header>
 
@@ -71,7 +35,7 @@ if ($emp_no !== '') {
         <?php else: ?>
             <section class="mb-4 mt-4">
                 <div class="section-title">Informations générales</div>
-                <table class="table fiche-table table-bordered bg-white mb-4">
+                <table class="table fiche-table table-bordered mb-4">
                     <tbody>
                         <tr>
                             <th>Nom et prénom</th>
@@ -108,8 +72,8 @@ if ($emp_no !== '') {
                     </tbody>
                 </table>
                 <div class="mb-3">
-                    <a href="departement_employees.php?dept_no=<?= urlencode($employe['dept_no']) ?>" class="btn btn-outline-primary btn-sm me-2">← Employés du département</a>
-                    <a href="../index.php" class="btn btn-outline-secondary btn-sm">← Liste des départements</a>
+                    <a href="departement_employees.php?dept_no=<?= urlencode($employe['dept_no']) ?>" class="btn btn-sm me-2">← Employés du département</a>
+                    <a href="../index.php" class="btn btn-sm">← Liste des départements</a>
                 </div>
             </section>
 
@@ -118,8 +82,8 @@ if ($emp_no !== '') {
                 <?php if (empty($historique["titles"])): ?>
                     <div class="alert alert-warning">Aucun titre enregistré.</div>
                 <?php else: ?>
-                    <table class="table table-bordered bg-white">
-                        <thead class="table-light">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
                                 <th>Titre</th>
                                 <th>Du</th>
@@ -150,10 +114,10 @@ if ($emp_no !== '') {
                 <?php if (empty($historique["salaries"])): ?>
                     <div class="alert alert-warning">Aucun salaire enregistré.</div>
                 <?php else: ?>
-                    <table class="table table-bordered bg-white">
-                        <thead class="table-light">
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <th>Salaire </th>
+                                <th>Salaire</th>
                                 <th>Du</th>
                                 <th>Au</th>
                             </tr>
@@ -175,5 +139,4 @@ if ($emp_no !== '') {
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

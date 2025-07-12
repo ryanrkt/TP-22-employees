@@ -1,9 +1,7 @@
 <?php
-
 require_once __DIR__ . '/../inc/fonction.php';
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
 
 $dept_no = $_GET['dept_no'] ?? '';
 $nom = trim($_GET['nom'] ?? '');
@@ -15,32 +13,34 @@ $page = isset($_GET['p']) && is_numeric($_GET['p']) && $_GET['p'] > 0 ? (int)$_G
 $parPage = 20;
 $offset = ($page - 1) * $parPage;
 
-// Nombre total de résultats
 $total = compterEmployes($dept_no, $nom, $age_min, $age_max);
 $nbPages = max(1, ceil($total / $parPage));
 
-// Récupérer les employés pour la page courante
 $employes = rechercherEmployes($dept_no, $nom, $age_min, $age_max, $offset, $parPage);
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8" />
     <title>Résultat de la recherche</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body>
+
     <?php include __DIR__ . '/formulaire_recherche.php'; ?>
+
     <main class="container py-4">
-        <h2 class="mb-3">Résultat de la recherche</h2>
-        <a href="../index.php" class="btn btn-secondary mb-3">← Retour</a>
+        <h2 class="mb-3 text-success">Résultat de la recherche</h2>
+        <a href="../index.php" class="btn btn-sm btn-outline-secondary mb-3">← Retour</a>
 
         <?php if (empty($employes)): ?>
             <div class="alert alert-warning">Aucun employé ne correspond à la recherche.</div>
         <?php else: ?>
             <div class="table-responsive">
-                <table class="table table-bordered table-hover">
-                    <thead class="table-secondary">
+                <table class="table table-bordered table-hover table-dark">
+                    <thead class="table-success text-dark">
                         <tr>
                             <th>Numéro</th>
                             <th>Nom</th>
@@ -61,16 +61,17 @@ $employes = rechercherEmployes($dept_no, $nom, $age_min, $age_max, $offset, $par
                                 <td><?= htmlspecialchars($emp['hire_date']) ?></td>
                                 <td>
                                     <?php if (!empty($emp['dept_no'])): ?>
-                                        <a href="departement_employees.php?dept_no=<?= urlencode($emp['dept_no']) ?>" class="btn btn-sm btn-outline-primary">
+                                        <a href="departement_employees.php?dept_no=<?= urlencode($emp['dept_no']) ?>" class="btn btn-sm btn-outline-success">
                                             <?= htmlspecialchars($emp['dept_name']) ?>
                                         </a>
-                                        
                                     <?php else: ?>
                                         <span class="text-muted">Aucun</span>
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <a href="fiche_employee.php?emp_no=<?= urlencode($emp['emp_no']) ?>" class="btn btn-sm btn-outline-secondary">Voir fiche</a>
+                                    <a href="fiche_employee.php?emp_no=<?= urlencode($emp['emp_no']) ?>" class="btn btn-sm btn-outline-light">
+                                        Voir fiche
+                                    </a>
                                 </td>
                             </tr>
                         <?php endforeach; ?>
@@ -79,7 +80,6 @@ $employes = rechercherEmployes($dept_no, $nom, $age_min, $age_max, $offset, $par
             </div>
 
             <?php
-            // Pagination intelligente : 5 avant et 5 après la page courante
             $start = max(1, $page - 5);
             $end = min($nbPages, $page + 5);
             ?>
@@ -106,5 +106,6 @@ $employes = rechercherEmployes($dept_no, $nom, $age_min, $age_max, $offset, $par
             <?php endif; ?>
         <?php endif; ?>
     </main>
+
 </body>
 </html>

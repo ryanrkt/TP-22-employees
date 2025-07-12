@@ -8,7 +8,7 @@ $res = mysqli_query($conn, "SELECT dept_no, dept_name FROM departments ORDER BY 
 while ($row = $res->fetch_assoc()) {
     $departements[] = $row;
 }
-$chemin="/22-tp/pages/recherche.php";
+$chemin="/TP-22-employees/pages/recherche.php";
 ?>
 
 <div class="container my-3">
