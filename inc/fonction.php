@@ -188,5 +188,12 @@ function getNbEmployeesDepartement($dept_no){
     return 0;
 }
 
+function getAllDepartements() {
+    $conn=dbconnect();
+    $sql = "SELECT dept_no, dept_name FROM departments";
+    $res = mysqli_query($conn, $sql);
+    return mysqli_fetch_all($res, MYSQLI_ASSOC);
+}
+
 
 ?>

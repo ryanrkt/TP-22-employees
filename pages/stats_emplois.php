@@ -26,16 +26,16 @@ $res = mysqli_query($conn, $sql);
         <div class="card shadow mb-5">
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-hover">
-                        <thead>
+                    <table class="table table-dark table-hover table-bordered align-middle">
+                        
                             <tr>
                                 <th>Emploi</th>
                                 <th>Nombre d'hommes</th>
                                 <th>Nombre de femmes</th>
                                 <th>Salaire moyen</th>
                             </tr>
-                        </thead>
-                        <tbody>
+                        
+                    
                             <?php while ($row = mysqli_fetch_assoc($res)): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($row['title']) ?></td>
@@ -44,7 +44,7 @@ $res = mysqli_query($conn, $sql);
                                     <td><?= number_format($row['salaire_moyen'], 2, ',', ' ') ?> Ar</td>
                                 </tr>
                             <?php endwhile; ?>
-                        </tbody>
+                    
                     </table>
                 </div>
             </div>
